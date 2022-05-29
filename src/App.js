@@ -1,12 +1,17 @@
 // import "./App.css";
 import Dropdown from "./components/Dropdown";
-import { useBaseCurr, useTargerCurr } from "./contexts/Context";
+import {
+  useBaseCurr,
+  useTargerCurr,
+  useExchangeRate,
+} from "./contexts/Context";
 
 import currencyCodeData from "./constants/currencyCodeData";
 
-function App() {
-  const [baseCurr, setbaseCurr] = useBaseCurr();
+export default function App() {
+  const [baseCurr, setBaseCurr] = useBaseCurr();
   const [targetCurr, setTargetCurr] = useTargerCurr();
+  const [exchangeRate, setExchangeRate] = useExchangeRate();
 
   return (
     <>
@@ -14,7 +19,7 @@ function App() {
         data={currencyCodeData}
         element="code"
         curr={baseCurr}
-        setCurr={setbaseCurr}
+        setCurr={setBaseCurr}
         label="Base Currency"
       />
       <Dropdown
@@ -24,8 +29,7 @@ function App() {
         setCurr={setTargetCurr}
         label="Target Currency"
       />
+      <>{exchangeRate}</>
     </>
   );
 }
-
-export default App;
