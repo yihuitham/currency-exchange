@@ -1,7 +1,14 @@
-import "./App.css";
+// import "./App.css";
+import Dropdown from "./components/Dropdown";
+
+import currencyCodeData from "./currencyCodeData";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <Dropdown data={currencyCodeData} element="code" />
+    </>
+  );
 }
 
 export default App;
