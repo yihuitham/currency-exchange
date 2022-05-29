@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Downshift from "downshift";
 
-function Dropdown({ data, element }) {
-  const [selectedData, setSelectedData] = useState("USD");
+function Dropdown({ data, element, curr, setCurr }) {
+  console.log(curr);
   return (
     <Downshift
-      onChange={(selection) => setSelectedData(selection.code)}
-      itemToString={(item) => (item ? item[element] : "USD")}
+      onChange={(selection) => setCurr(selection.code)}
+      itemToString={(item) => (item ? item[element] : curr)}
     >
       {({
         closeMenu,
@@ -44,6 +44,7 @@ function Dropdown({ data, element }) {
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
+              placeholder={curr}
               {...getInputProps({ onFocus: openMenu, onBlur: closeMenu })}
             />
             <div
@@ -73,7 +74,7 @@ function Dropdown({ data, element }) {
                             }`,
                           })}
                         >
-                          {item.code}
+                          {item[element]}
                         </li>
                       ))
                   : null}
