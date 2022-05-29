@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Downshift from "downshift";
 
-function Dropdown({ data, element, curr, setCurr }) {
-  console.log(curr);
+function Dropdown({ data, element, curr, setCurr, label }) {
+  console.log(label, ":", curr);
   return (
     <Downshift
       onChange={(selection) => setCurr(selection.code)}
@@ -26,7 +26,7 @@ function Dropdown({ data, element, curr, setCurr }) {
               {...getLabelProps()}
               className="font-bold text-xs text-gray-700 block"
             >
-              Base Currency
+              {label}
             </label>
             <input
               className="
