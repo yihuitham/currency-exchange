@@ -1,7 +1,7 @@
 // import "./App.css";
 import Dropdown from "./components/Dropdown";
 
-import currencyCodeData from "./currencyCodeData";
+import currencyCodeData from "./constants/currencyCodeData";
 
 function App() {
   return (
