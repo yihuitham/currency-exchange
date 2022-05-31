@@ -12,6 +12,18 @@ export function getRequestedURL(base, target) {
   return `https://api.currencyapi.com/v3/latest?apikey=${API_KEY}&currencies=${target}&base_currency=${base}`;
 }
 
+// {
+//   "meta": {
+//     "last_updated_at": "2022-05-30T23:59:59Z"
+//   },
+//   "data": {
+//     "SGD": {
+//       "code": "SGD",
+//       "value": 1.36699
+//     }
+//   }
+// }
+
 export function useBaseCurr() {
   return useContext(BaseCurrContext);
 }

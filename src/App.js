@@ -10,10 +10,6 @@ import {
 import currencyCodeData from "./constants/currencyCodeData";
 import InputAmount from "./components/InputAmount";
 
-// function to2Decimals(value) {
-//   return Math.round(value * 100) / 100;
-// }
-
 export default function App() {
   const [baseCurr, setBaseCurr] = useBaseCurr();
   const [targetCurr, setTargetCurr] = useTargerCurr();
@@ -24,7 +20,7 @@ export default function App() {
   const getRequest = async () => {
     try {
       const response = await fetch(
-        "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev/"
+        "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev"
       );
       const data = await response.json();
       console.log(data);
@@ -46,7 +42,7 @@ export default function App() {
     };
     try {
       const response = await fetch(
-        "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev/",
+        "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev",
         requestOptions
       );
       const data = await response.json();
@@ -56,7 +52,7 @@ export default function App() {
     }
   };
 
-  console.log(targetAmt);
+  console.log();
 
   useEffect(() => {
     setTargetAmt(baseAmt * exchangeRate);
