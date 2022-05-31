@@ -5,7 +5,7 @@ const BaseCurrContext = createContext();
 const TargetCurrContext = createContext();
 const ExchangeRateContext = createContext();
 
-function getRequestedURL(base, target) {
+export function getRequestedURL(base, target) {
   if (target === "") {
     return;
   }
