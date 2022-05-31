@@ -24,7 +24,7 @@ export default function App() {
   const getRequest = async () => {
     try {
       const response = await fetch(
-        " https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev"
+        "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev/"
       );
       const data = await response.json();
       console.log(data);
@@ -46,7 +46,7 @@ export default function App() {
     };
     try {
       const response = await fetch(
-        " https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev",
+        "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev/",
         requestOptions
       );
       const data = await response.json();
