@@ -6,7 +6,7 @@ function Dropdown({ data, element, curr, setCurr, label }) {
   return (
     <Downshift
       onChange={(selection) => setCurr(selection.code)}
-      itemToString={(item) => (item ? item[element] : curr)}
+      itemToString={(item) => (item ? item[element] : "")}
     >
       {({
         closeMenu,
@@ -20,19 +20,19 @@ function Dropdown({ data, element, curr, setCurr, label }) {
         openMenu,
         selectedItem,
       }) => (
-        <div className="m-auto w-full">
-          <div className="m-auto w-1/2 mt-6">
-            <label
-              {...getLabelProps()}
-              className="font-bold text-xs text-gray-700 block"
-            >
-              {label}
-            </label>
+        <div className="mt-6">
+          <label
+            {...getLabelProps()}
+            className="font-bold text-xs text-gray-700 w-fit block"
+          >
+            {label}
+          </label>
+          <div>
             <input
               className="
                 form-control
                 block
-                w-2/12
+                w-fit
                 text-center
                 font-bold
                 text-gray-700
@@ -47,39 +47,42 @@ function Dropdown({ data, element, curr, setCurr, label }) {
               placeholder={curr}
               {...getInputProps({ onFocus: openMenu, onBlur: closeMenu })}
             />
-            <div
-              id="dropdown"
-              className="overflow-auto scrollbar-hide h-32 w-2/12 drop-shadow-md rounded"
-            >
-              <ul className="rounded bg-white" {...getMenuProps()}>
-                {isOpen
-                  ? data
-                      .filter(
-                        (item) =>
-                          !inputValue ||
-                          item.code
-                            .toLowerCase()
-                            .includes(inputValue.toLowerCase())
-                      )
-                      .map((item, index) => (
-                        <li
-                          {...getItemProps({
-                            key: item.code,
-                            index,
-                            item,
-                            className: `text-center ${
-                              highlightedIndex === index
-                                ? "bg-gray-100 font-bold"
-                                : ""
-                            }`,
-                          })}
-                        >
-                          {item[element]}
-                        </li>
-                      ))
-                  : null}
-              </ul>
-            </div>
+            {isOpen ? (
+              <div
+                id="dropdown"
+                className="fixed overflow-auto scrollbar-hide h-32 w-fit drop-shadow-md rounded"
+              >
+                <ul
+                  className="bg-white relative rounded w-fit z-10"
+                  {...getMenuProps()}
+                >
+                  {data
+                    .filter(
+                      (item) =>
+                        !inputValue ||
+                        item.code
+                          .toLowerCase()
+                          .includes(inputValue.toLowerCase())
+                    )
+                    .map((item, index) => (
+                      <li
+                        {...getItemProps({
+                          key: item.code,
+                          index,
+                          item,
+                          className: `text-center ${
+                            highlightedIndex === index
+                              ? "bg-gray-100 font-bold"
+                              : ""
+                          }`,
+                        })}
+                      >
+                        {item[element]}
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ) : null}
           </div>
         </div>
       )}

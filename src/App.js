@@ -24,20 +24,22 @@ export default function App() {
   console.log(baseAmt);
   return (
     <>
-      <Dropdown
-        data={currencyCodeData}
-        element="code"
-        curr={baseCurr}
-        setCurr={setBaseCurr}
-        label="Base Currency"
-      />
-      <Dropdown
-        data={currencyCodeData}
-        element="code"
-        curr={targetCurr}
-        setCurr={setTargetCurr}
-        label="Target Currency"
-      />
+      <div className="flex">
+        <Dropdown
+          data={currencyCodeData}
+          element="code"
+          curr={baseCurr}
+          setCurr={setBaseCurr}
+          label="Base Currency"
+        />
+        <Dropdown
+          data={currencyCodeData}
+          element="code"
+          curr={targetCurr}
+          setCurr={setTargetCurr}
+          label="Target Currency"
+        />
+      </div>
       <>{exchangeRate}</>
       <InputAmount
         className="bg-gray-100"
