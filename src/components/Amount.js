@@ -17,7 +17,6 @@ export default function Amount({ name, value, setValue, disabled = false }) {
         className="font-bold text-center bg-black border-b border-gray-300 text-white w-full focus:outline-none focus:border-blue-400 text-base"
         name={name}
         onChange={handleChange}
-        value={value}
         disabled={disabled}
         placeholder={1}
       />
