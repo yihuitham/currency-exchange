@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-export default function InputAmount({ name, value, setValue }) {
+export default function InputAmount({
+  name,
+  value,
+  setValue,
+  //   disabled = false,
+}) {
   const [error, setError] = useState(false);
   function handleChange(event) {
     const input = event.target.value;
@@ -13,10 +18,11 @@ export default function InputAmount({ name, value, setValue }) {
   return (
     <>
       <input
-        className="bg-gray-100"
+        className="bg-gray-100 text-black"
         name={name}
         onChange={handleChange}
         value={value}
+        // disabled={disabled}
       />
       {error ? <p>Please enter a valid amount</p> : null}
     </>

@@ -20,29 +20,25 @@ function Dropdown({ data, element, curr, setCurr, label }) {
         openMenu,
         selectedItem,
       }) => (
-        <div className="mt-6">
+        <div className="">
           <label
             {...getLabelProps()}
-            className="font-bold text-xs text-gray-700 w-fit block"
+            className="font-bold text-xs text-white block"
           >
             {label}
           </label>
-          <div>
+          <div className="">
             <input
               className="
-                form-control
-                block
-                w-fit
                 text-center
                 font-bold
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
+                text-white
+                bg-black
+                border-b border-gray-300
                 rounded
                 transition
                 ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                focus:text-white focus:outline-none
             "
               placeholder={curr}
               {...getInputProps({ onFocus: openMenu, onBlur: closeMenu })}
@@ -50,19 +46,16 @@ function Dropdown({ data, element, curr, setCurr, label }) {
             {isOpen ? (
               <div
                 id="dropdown"
-                className="fixed overflow-auto scrollbar-hide h-32 w-fit drop-shadow-md rounded"
+                className="fixed overflow-auto scrollbar-hide h-32 drop-shadow-md"
               >
-                <ul
-                  className="bg-white relative rounded w-fit z-10"
-                  {...getMenuProps()}
-                >
+                <ul className="bg-black relative z-10" {...getMenuProps()}>
                   {data
                     .filter(
                       (item) =>
                         !inputValue ||
                         item.code
                           .toLowerCase()
-                          .includes(inputValue.toLowerCase())
+                          .startsWith(inputValue.toLowerCase())
                     )
                     .map((item, index) => (
                       <li
@@ -72,7 +65,7 @@ function Dropdown({ data, element, curr, setCurr, label }) {
                           item,
                           className: `text-center ${
                             highlightedIndex === index
-                              ? "bg-gray-100 font-bold"
+                              ? "bg-gray-100 font-bold text-gray-700"
                               : ""
                           }`,
                         })}

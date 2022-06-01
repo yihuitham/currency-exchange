@@ -28,31 +28,29 @@ export default function ConversionSection() {
   });
 
   return (
-    <>
+    <div className="bg-black h-screen text-white">
       <div className="flex">
-        <InputAmount
-          className="bg-gray-100"
-          name="baseAmt"
-          value={baseAmt}
-          setValue={setBaseAmt}
-        />
         <Dropdown
           data={currencyCodeData}
           element="code"
           curr={baseCurr}
           setCurr={setBaseCurr}
-          label="Base Currency"
+          label="I'd like to send"
         />
+        <InputAmount name="baseAmt" value={baseAmt} setValue={setBaseAmt} />
+      </div>
+      <div className="flex">
         <Dropdown
           data={currencyCodeData}
           element="code"
           curr={targetCurr}
           setCurr={setTargetCurr}
-          label="Target Currency"
+          label="And receive in"
         />
+        <div>{targetAmt}</div>
       </div>
-      <>{exchangeRate}</>
+
       <button onClick={handleConversion}>Convert</button>
-    </>
+    </div>
   );
 }
