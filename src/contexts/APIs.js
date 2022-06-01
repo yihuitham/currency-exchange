@@ -1,0 +1,43 @@
+export function getCurrencyAPIURL(base, target) {
+  const API_KEY = "SWfwu5jR2RPfybJz4QJkCnZKxlzE3h6pUdtUcpbY";
+
+  if (target === "") {
+    return;
+  }
+  return `https://api.currencyapi.com/v3/latest?apikey=${API_KEY}&currencies=${target}&base_currency=${base}`;
+}
+
+export const getRequest = async () => {
+  try {
+    const response = await fetch(
+      "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev"
+    );
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postRequest = async (baseAmt, baseCurr, targetAmt, targetCurr) => {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      baseAmt,
+      baseCurr,
+      targetAmt,
+      targetCurr,
+    }),
+  };
+  try {
+    const response = await fetch(
+      "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev",
+      requestOptions
+    );
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};

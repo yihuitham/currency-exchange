@@ -1,14 +1,15 @@
 // import "./App.css";
 import { useState, useEffect } from "react";
+
 import Dropdown from "./components/Dropdown";
 import {
   useBaseCurr,
   useTargerCurr,
   useExchangeRate,
 } from "./contexts/Context";
-
 import currencyCodeData from "./constants/currencyCodeData";
 import InputAmount from "./components/InputAmount";
+import { getRequest, postRequest } from "./contexts/APIs";
 
 export default function App() {
   const [baseCurr, setBaseCurr] = useBaseCurr();
@@ -17,42 +18,10 @@ export default function App() {
   const [baseAmt, setBaseAmt] = useState(1);
   const [targetAmt, setTargetAmt] = useState(null);
 
-  const getRequest = async () => {
-    try {
-      const response = await fetch(
-        "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev"
-      );
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleConversion = () => {
+    postRequest(baseAmt, baseCurr, targetAmt, targetCurr);
+    getRequest();
   };
-
-  const postRequest = async () => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        baseAmt: baseAmt,
-        baseCurr: baseCurr,
-        targetAmt: targetAmt,
-        targetCurr: targetCurr,
-      }),
-    };
-    try {
-      const response = await fetch(
-        "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev",
-        requestOptions
-      );
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  console.log();
 
   useEffect(() => {
     setTargetAmt(baseAmt * exchangeRate);
@@ -83,8 +52,7 @@ export default function App() {
         />
       </div>
       <>{exchangeRate}</>
-      <button onClick={postRequest}>Convert</button>
-      <button onClick={getRequest}>Get Request</button>
+      <button onClick={handleConversion}>Convert</button>
     </>
   );
 }

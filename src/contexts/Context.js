@@ -1,16 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { getCurrencyAPIURL } from "./APIs";
 
-const API_KEY = "SWfwu5jR2RPfybJz4QJkCnZKxlzE3h6pUdtUcpbY";
 const BaseCurrContext = createContext();
 const TargetCurrContext = createContext();
 const ExchangeRateContext = createContext();
-
-export function getRequestedURL(base, target) {
-  if (target === "") {
-    return;
-  }
-  return `https://api.currencyapi.com/v3/latest?apikey=${API_KEY}&currencies=${target}&base_currency=${base}`;
-}
 
 // {
 //   "meta": {
@@ -44,7 +37,7 @@ export default function SelectedDataProvider({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(getRequestedURL(baseCurr, targetCurr));
+        const response = await fetch(getCurrencyAPIURL(baseCurr, targetCurr));
         const data = await response.json();
         setExchangeRate(data.data[targetCurr].value);
       } catch (error) {
@@ -54,7 +47,7 @@ export default function SelectedDataProvider({ children }) {
     fetchData();
   }, []);
 
-  console.log(getRequestedURL(baseCurr, targetCurr));
+  console.log(getCurrencyAPIURL(baseCurr, targetCurr));
   return (
     <BaseCurrContext.Provider value={[baseCurr, setBaseCurr]}>
       <TargetCurrContext.Provider value={[targetCurr, setTargetCurr]}>
