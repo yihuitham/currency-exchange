@@ -8,7 +8,7 @@ import {
   useExchangeRate,
 } from "../contexts/Context";
 import currencyCodeData from "../constants/currencyCodeData";
-import InputAmount from "./InputAmount";
+import Amount from "./Amount";
 import { getRequest, postRequest } from "../contexts/APIs";
 
 export default function ConversionSection() {
@@ -37,7 +37,7 @@ export default function ConversionSection() {
           setCurr={setBaseCurr}
           label="I'd like to send"
         />
-        <InputAmount name="baseAmt" value={baseAmt} setValue={setBaseAmt} />
+        <Amount name="baseAmt" value={baseAmt} setValue={setBaseAmt} />
       </div>
       <div className="flex">
         <Dropdown
@@ -47,7 +47,12 @@ export default function ConversionSection() {
           setCurr={setTargetCurr}
           label="And receive in"
         />
-        <div>{targetAmt}</div>
+        <Amount
+          name="baseAmt"
+          value={targetAmt}
+          setValue={null}
+          disabled="true"
+        />
       </div>
 
       <button onClick={handleConversion}>Convert</button>
