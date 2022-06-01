@@ -15,8 +15,9 @@ export default function ConversionSection() {
   const [baseCurr, setBaseCurr] = useBaseCurr();
   const [targetCurr, setTargetCurr] = useTargerCurr();
   const [exchangeRate, setExchangeRate] = useExchangeRate();
-  const [baseAmt, setBaseAmt] = useState(1);
+  const [baseAmt, setBaseAmt] = useState(null);
   const [targetAmt, setTargetAmt] = useState(null);
+  const [history, setHistory] = useState(null);
 
   function to2Decimal(value) {
     return Math.floor(value * 100) / 100;
@@ -29,7 +30,7 @@ export default function ConversionSection() {
     const getTargetAmt = to2Decimal(getExchangeRate * baseAmt);
     setTargetAmt(getTargetAmt);
     postRequest(baseAmt, baseCurr, getTargetAmt, targetCurr);
-    getRequest();
+    setHistory(getRequest());
   };
 
   //   useEffect(() => {
@@ -38,29 +39,44 @@ export default function ConversionSection() {
   //   }, []);
 
   return (
-    <div className="bg-black h-screen text-white">
-      <div className="flex">
-        <Dropdown
-          data={currencyCodeData}
-          element="code"
-          curr={baseCurr}
-          setCurr={setBaseCurr}
-          label="I'd like to send"
-        />
-        <Amount name="baseAmt" value={baseAmt} setValue={setBaseAmt} />
-      </div>
-      <div className="flex">
-        <Dropdown
-          data={currencyCodeData}
-          element="code"
-          curr={targetCurr}
-          setCurr={setTargetCurr}
-          label="And receive in"
-        />
-        <div>{targetAmt}</div>
-      </div>
+    <div className="flex justify-center items-center bg-black h-screen text-white">
+      <div className="grid grid-cols-2 gap-6 place-items-stretch">
+        <div className="">
+          <Dropdown
+            data={currencyCodeData}
+            element="code"
+            curr={baseCurr}
+            setCurr={setBaseCurr}
+            label="I'd like to send"
+          />
+        </div>
 
-      <button onClick={handleConversion}>Convert</button>
+        <div className="self-end">
+          <Amount name="baseAmt" value={baseAmt} setValue={setBaseAmt} />
+        </div>
+
+        <div className="">
+          <Dropdown
+            data={currencyCodeData}
+            element="code"
+            curr={targetCurr}
+            setCurr={setTargetCurr}
+            label="And receive in"
+          />
+        </div>
+
+        <div className="font-bold text-lg self-end text-white text-center">
+          {targetAmt}
+        </div>
+        <div className="col-span-2">
+          <button
+            className="w-full h-12 rounded-xl bg-white text-black text-lg font-bold"
+            onClick={handleConversion}
+          >
+            Convert
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

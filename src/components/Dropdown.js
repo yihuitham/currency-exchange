@@ -27,7 +27,7 @@ function Dropdown({ data, element, curr, setCurr, label }) {
           >
             {label}
           </label>
-          <div className="">
+          <div className="relative mt-6">
             <input
               className="
                 text-center
@@ -35,20 +35,21 @@ function Dropdown({ data, element, curr, setCurr, label }) {
                 text-white
                 bg-black
                 border-b border-gray-300
-                rounded
+                mt-6
                 transition
                 ease-in-out
-                focus:text-white focus:outline-none
-            "
+                focus:text-white focus:outline-none 
+                focus:border-blue-400
+                text-lg"
               placeholder={curr}
               {...getInputProps({ onFocus: openMenu, onBlur: closeMenu })}
             />
             {isOpen ? (
               <div
                 id="dropdown"
-                className="fixed overflow-auto scrollbar-hide h-32 drop-shadow-md"
+                className=" overflow-auto scrollbar-hide h-32 drop-shadow-md absolute z-10 w-full rounded-bl-xl rounded-br-lg"
               >
-                <ul className="bg-black relative z-10" {...getMenuProps()}>
+                <ul className="" {...getMenuProps()}>
                   {data
                     .filter(
                       (item) =>
@@ -63,9 +64,9 @@ function Dropdown({ data, element, curr, setCurr, label }) {
                           key: item.code,
                           index,
                           item,
-                          className: `text-center ${
+                          className: `text-center bg-gray-800 ${
                             highlightedIndex === index
-                              ? "bg-gray-100 font-bold text-gray-700"
+                              ? "bg-white font-bold text-black"
                               : ""
                           }`,
                         })}
