@@ -1,9 +1,16 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { getCurrencyAPIURL } from "./APIs";
 
+const API_KEY = "SWfwu5jR2RPfybJz4QJkCnZKxlzE3h6pUdtUcpbY";
 const BaseCurrContext = createContext();
 const TargetCurrContext = createContext();
 const ExchangeRateContext = createContext();
+
+export function getCurrencyAPIURL(base, target) {
+  if (target === "") {
+    return;
+  }
+  return `https://api.currencyapi.com/v3/latest?apikey=${API_KEY}&currencies=${target}&base_currency=${base}`;
+}
 
 // {
 //   "meta": {
@@ -48,6 +55,7 @@ export default function SelectedDataProvider({ children }) {
   }, []);
 
   console.log(getCurrencyAPIURL(baseCurr, targetCurr));
+  console.log(exchangeRate);
   return (
     <BaseCurrContext.Provider value={[baseCurr, setBaseCurr]}>
       <TargetCurrContext.Provider value={[targetCurr, setTargetCurr]}>

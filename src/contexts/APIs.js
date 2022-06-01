@@ -1,10 +1,22 @@
 export function getCurrencyAPIURL(base, target) {
-  const API_KEY = "SWfwu5jR2RPfybJz4QJkCnZKxlzE3h6pUdtUcpbY";
+  const API_KEY = "VJ1Bc8eSWux2wfBNc73Marc6BVIzj1dBnd4oscd5";
 
   if (target === "") {
     return;
   }
   return `https://api.currencyapi.com/v3/latest?apikey=${API_KEY}&currencies=${target}&base_currency=${base}`;
+}
+
+export async function fetchExchangeRate(baseCurr, targetCurr) {
+  try {
+    const response = await fetch(getCurrencyAPIURL(baseCurr, targetCurr));
+    const data = await response.json();
+    const exchangeRate = data.data[targetCurr].value;
+    console.log("exchange rate: ", exchangeRate);
+    return exchangeRate;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export const getRequest = async () => {

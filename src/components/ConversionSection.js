@@ -9,7 +9,7 @@ import {
 } from "../contexts/Context";
 import currencyCodeData from "../constants/currencyCodeData";
 import Amount from "./Amount";
-import { getRequest, postRequest } from "../contexts/APIs";
+import { fetchExchangeRate, getRequest, postRequest } from "../contexts/APIs";
 
 export default function ConversionSection() {
   const [baseCurr, setBaseCurr] = useBaseCurr();
@@ -18,14 +18,24 @@ export default function ConversionSection() {
   const [baseAmt, setBaseAmt] = useState(1);
   const [targetAmt, setTargetAmt] = useState(null);
 
-  const handleConversion = () => {
-    postRequest(baseAmt, baseCurr, targetAmt, targetCurr);
+  function to2Decimal(value) {
+    return Math.floor(value * 100) / 100;
+  }
+
+  const handleConversion = async () => {
+    const getExchangeRate = await fetchExchangeRate(baseCurr, targetCurr);
+    await setExchangeRate(getExchangeRate);
+    console.log(exchangeRate);
+    const getTargetAmt = to2Decimal(getExchangeRate * baseAmt);
+    setTargetAmt(getTargetAmt);
+    postRequest(baseAmt, baseCurr, getTargetAmt, targetCurr);
     getRequest();
   };
 
-  useEffect(() => {
-    setTargetAmt(baseAmt * exchangeRate);
-  });
+  //   useEffect(() => {
+  //     setTargetAmt(baseAmt * exchangeRate);
+  //     console.log(baseAmt);
+  //   }, []);
 
   return (
     <div className="bg-black h-screen text-white">
@@ -47,12 +57,7 @@ export default function ConversionSection() {
           setCurr={setTargetCurr}
           label="And receive in"
         />
-        <Amount
-          name="baseAmt"
-          value={targetAmt}
-          setValue={null}
-          disabled="true"
-        />
+        <div>{targetAmt}</div>
       </div>
 
       <button onClick={handleConversion}>Convert</button>
