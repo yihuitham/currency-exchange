@@ -10,8 +10,11 @@ This project is built using:
 
 ## How To Use
 
-Key in:
+1. Key in:
 
-- amount and currency in which you would like to send
-- currency in which you would like to exchange for
-  ![Landing page](./public/currency-conversion-landing-page.png)
+   - **amount** and **currency** you would like to send
+   - **currency** you would like to exchange for
+
+2. Hit the "Convert" button to get the result and logged into the record of "Past Queries"
+
+![Landing page](./public/currency-conversion-landing-page.png)
