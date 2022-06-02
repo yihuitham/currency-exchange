@@ -9,7 +9,7 @@ export default function HistoryTable({ data }) {
     }
   });
 
-  console.log("sorted", sortedData);
+  // console.log("sorted", sortedData);
   return (
     <div className="overflow-auto h-full scrollbar">
       <table className="table-auto w-full text-center">

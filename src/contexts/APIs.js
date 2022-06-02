@@ -12,7 +12,7 @@ export async function fetchExchangeRate(baseCurr, targetCurr) {
     const response = await fetch(getCurrencyAPIURL(baseCurr, targetCurr));
     const data = await response.json();
     const exchangeRate = data.data[targetCurr].value;
-    console.log("exchange rate: ", exchangeRate);
+    // console.log("exchange rate: ", exchangeRate);
     return exchangeRate;
   } catch (error) {
     console.log(error);
@@ -25,7 +25,7 @@ export const getRequest = async () => {
       "https://dyj6i4wuc7.execute-api.ap-southeast-1.amazonaws.com/dev"
     );
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data.Items;
   } catch (error) {
     console.log(error);

@@ -37,7 +37,7 @@ export default function ConversionSection() {
       console.log(error);
     }
   };
-  console.log(history);
+  // console.log(history);
 
   useEffect(() => {
     const getExchangeRate = async () => {

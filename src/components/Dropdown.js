@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Downshift from "downshift";
 
 function Dropdown({ data, element, curr, setCurr, label }) {
-  console.log("selected currency:", curr);
   return (
     <Downshift
       onChange={(selection) => setCurr(selection.code)}

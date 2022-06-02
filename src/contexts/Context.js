@@ -63,8 +63,8 @@ export default function SelectedDataProvider({ children }) {
     fetchData();
   }, []);
 
-  console.log(getCurrencyAPIURL(baseCurr, targetCurr));
-  console.log(exchangeRate);
+  // console.log(getCurrencyAPIURL(baseCurr, targetCurr));
+  // console.log(exchangeRate);
   return (
     <BaseCurrContext.Provider value={[baseCurr, setBaseCurr]}>
       <TargetCurrContext.Provider value={[targetCurr, setTargetCurr]}>
