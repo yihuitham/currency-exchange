@@ -84,7 +84,7 @@ export default function ConversionSection() {
             >
               Convert
             </button>
-            <div className="text-center mt-2 text-zinc-300">
+            <div className="text-center my-2 text-zinc-300">
               {baseCurr} 1 = {targetCurr} {exchangeRate}
             </div>
           </div>
