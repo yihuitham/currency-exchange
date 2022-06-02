@@ -62,7 +62,6 @@ export default function SelectedDataProvider({ children }) {
     };
     fetchData();
   }, []);
-  console.log(history);
 
   console.log(getCurrencyAPIURL(baseCurr, targetCurr));
   console.log(exchangeRate);

@@ -28,24 +28,26 @@ export default function ConversionSection() {
 
   const handleConversion = async () => {
     try {
-      const getExchangeRate = await fetchExchangeRate(baseCurr, targetCurr);
-      await setExchangeRate(getExchangeRate);
-      console.log(exchangeRate);
-      const getTargetAmt = to2Decimal(getExchangeRate * baseAmt);
+      // const getExchangeRate = await fetchExchangeRate(baseCurr, targetCurr);
+      // await setExchangeRate(getExchangeRate);
+      const getTargetAmt = to2Decimal(exchangeRate * baseAmt);
       setTargetAmt(getTargetAmt);
       postRequest(baseAmt, baseCurr, getTargetAmt, targetCurr);
-      console.log(getTargetAmt);
       const historyData = await getRequest();
-      await setHistory(historyData);
+      setHistory(historyData);
     } catch (error) {
       console.log(error);
     }
   };
+  console.log(history);
 
-  //   useEffect(() => {
-  //     setTargetAmt(baseAmt * exchangeRate);
-  //     console.log(baseAmt);
-  //   }, []);
+  useEffect(() => {
+    const getExchangeRate = async () => {
+      const rate = await fetchExchangeRate(baseCurr, targetCurr);
+      await setExchangeRate(rate);
+    };
+    getExchangeRate();
+  }, [baseCurr, targetCurr, history]);
   return (
     <>
       <div className="flex justify-center items-center bg-black h-screen text-white">
@@ -84,7 +86,7 @@ export default function ConversionSection() {
             >
               Convert
             </button>
-            <div className="text-center mt-2">
+            <div className="text-center mt-2 text-zinc-300">
               {baseCurr} 1 = {targetCurr} {exchangeRate}
             </div>
           </div>
