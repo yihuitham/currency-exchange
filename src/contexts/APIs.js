@@ -1,5 +1,5 @@
 export function getCurrencyAPIURL(base, target) {
-  const API_KEY = "VJ1Bc8eSWux2wfBNc73Marc6BVIzj1dBnd4oscd5";
+  const API_KEY = "SWfwu5jR2RPfybJz4QJkCnZKxlzE3h6pUdtUcpbY";
 
   if (target === "") {
     return;

@@ -20,7 +20,7 @@ export default function ConversionSection() {
   const [history, setHistory] = useHistory();
 
   const [baseAmt, setBaseAmt] = useState(1);
-  const [targetAmt, setTargetAmt] = useState(null);
+  const [targetAmt, setTargetAmt] = useState();
 
   function to2Decimal(value) {
     return Math.floor(value * 100) / 100;
