@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function HistoryTable({ data }) {
-  console.log(data);
   return (
     <div className="overflow-auto h-full scrollbar">
       <table className="table-auto w-full text-center">

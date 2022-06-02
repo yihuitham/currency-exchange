@@ -19,7 +19,7 @@ export default function ConversionSection() {
   const [exchangeRate, setExchangeRate] = useExchangeRate();
   const [history, setHistory] = useHistory();
 
-  const [baseAmt, setBaseAmt] = useState(null);
+  const [baseAmt, setBaseAmt] = useState(1);
   const [targetAmt, setTargetAmt] = useState(null);
 
   function to2Decimal(value) {
@@ -28,11 +28,9 @@ export default function ConversionSection() {
 
   const handleConversion = async () => {
     try {
-      // const getExchangeRate = await fetchExchangeRate(baseCurr, targetCurr);
-      // await setExchangeRate(getExchangeRate);
       const getTargetAmt = to2Decimal(exchangeRate * baseAmt);
       setTargetAmt(getTargetAmt);
-      postRequest(baseAmt, baseCurr, getTargetAmt, targetCurr);
+      await postRequest(baseAmt, baseCurr, getTargetAmt, targetCurr);
       const historyData = await getRequest();
       setHistory(historyData);
     } catch (error) {
@@ -47,7 +45,7 @@ export default function ConversionSection() {
       await setExchangeRate(rate);
     };
     getExchangeRate();
-  }, [baseCurr, targetCurr, history]);
+  }, [baseCurr, targetCurr]);
   return (
     <>
       <div className="flex justify-center items-center bg-black h-screen text-white">
