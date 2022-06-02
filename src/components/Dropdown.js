@@ -66,7 +66,7 @@ function Dropdown({ data, element, curr, setCurr, label }) {
                           item,
                           className: `text-center bg-gray-800 ${
                             highlightedIndex === index
-                              ? "bg-white font-bold text-black"
+                              ? "bg-gray-600 font-bold"
                               : ""
                           }`,
                         })}

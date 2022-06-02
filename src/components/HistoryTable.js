@@ -16,10 +16,10 @@ export default function HistoryTable({ data }) {
             return (
               <tr key={index}>
                 <td className="w-1/2">
-                  {element.BaseCurrency} {element.BaseAmount}
+                  {element.BaseCurrency.S} {element.BaseAmount.S}
                 </td>
                 <td className="w-1/2">
-                  {element.TargetCurrency} {element.TargetAmount}
+                  {element.TargetCurrency.S} {element.TargetAmount.S}
                 </td>
               </tr>
             );

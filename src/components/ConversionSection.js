@@ -34,8 +34,9 @@ export default function ConversionSection() {
       const getTargetAmt = to2Decimal(getExchangeRate * baseAmt);
       setTargetAmt(getTargetAmt);
       postRequest(baseAmt, baseCurr, getTargetAmt, targetCurr);
+      console.log(getTargetAmt);
       const historyData = await getRequest();
-      setHistory(historyData);
+      await setHistory(historyData);
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +85,7 @@ export default function ConversionSection() {
               Convert
             </button>
           </div>
-
+          {/* <div className="col-span-2">{exchangeRate}</div> */}
           <div className="col-span-2 h-40">
             <div className="text-center font-bold mb-3">Past Queries</div>
             <div className="col-span-2 h-40">
