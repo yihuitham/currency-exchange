@@ -84,8 +84,12 @@ export default function ConversionSection() {
               Convert
             </button>
           </div>
-          <div className="col-span-2 h-40 overflow-auto scrollbar">
-            {history ? <HistoryTable data={history} /> : null}
+
+          <div className="col-span-2 h-40">
+            <div className="text-center font-bold mb-3">Past Queries</div>
+            <div className="col-span-2 h-40">
+              {history ? <HistoryTable data={history} /> : null}
+            </div>
           </div>
         </div>
       </div>
