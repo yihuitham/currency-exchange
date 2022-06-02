@@ -10,11 +10,9 @@ This project is built using:
 
 ## How To Use
 
-1. Key in:
-
-   - **amount** and **currency** you would like to send
-   - **currency** you would like to exchange for
-
-2. Hit the "Convert" button to get the result and logged into the record of "Past Queries"
+1. **Select** currency you are sending **from dropdown**.
+2. Key in amount you would like to send
+3. **Select** currency you would like to receive **from dropdown**
+4. Hit the "Convert" button to get the result and logged into the record of "Past Queries"
 
 ![Landing page](./public/currency-conversion-landing-page.png)
