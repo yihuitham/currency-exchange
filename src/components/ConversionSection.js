@@ -48,7 +48,7 @@ export default function ConversionSection() {
   return (
     <>
       <div className="flex justify-center items-center bg-black h-screen text-white">
-        <div className="grid grid-cols-2 gap-6 place-items-stretch">
+        <div className="grid grid-cols-2 gap-6">
           <div className="">
             <Dropdown
               data={currencyCodeData}
@@ -84,7 +84,7 @@ export default function ConversionSection() {
               Convert
             </button>
           </div>
-          <div className="col-span-2">
+          <div className="col-span-2 h-40 overflow-auto scrollbar">
             {history ? <HistoryTable data={history} /> : null}
           </div>
         </div>

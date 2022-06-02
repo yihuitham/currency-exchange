@@ -3,7 +3,7 @@ import React from "react";
 export default function HistoryTable({ data }) {
   console.log(data);
   return (
-    <table className="table-auto w-full text-center">
+    <table className="table-auto w-full text-center ">
       <thead>
         <tr>
           <th>Amount to Send</th>
