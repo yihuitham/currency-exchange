@@ -84,8 +84,10 @@ export default function ConversionSection() {
             >
               Convert
             </button>
+            <div className="text-center mt-2">
+              {baseCurr} 1 = {targetCurr} {exchangeRate}
+            </div>
           </div>
-          {/* <div className="col-span-2">{exchangeRate}</div> */}
           <div className="col-span-2 h-40">
             <div className="text-center font-bold mb-3">Past Queries</div>
             <div className="col-span-2 h-40">
